@@ -8,6 +8,16 @@ const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
+const cors = require("cors");
+
+app.use(cors({
+  origin: [
+    "https://milk-collection-management-paa2ptlng-mrr5.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 const allowedOrigins = (process.env.FRONTEND_ORIGIN || '')
   .split(',')
   .map((o) => o.trim().replace(/\/$/, ''))
